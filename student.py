@@ -44,10 +44,10 @@ for j in range(200):
     plt.plot(dotsX, dotsY, 'b-') # first line
     plt.plot(newX, newY, 'bo', markersize)
 
-    plt.plot(dotsX2, dotsY2, 'r-') # second line
-    plt.plot(newX2, newY2, 'ro', markersize)
+    plt.plot(dotsX2, dotsY2, 'g-') # second line
+    plt.plot(newX2, newY2, 'go', markersize)
 
-    plt.plot(x_values, y_values, 'r-')
+    plt.plot(x_values, y_values, 'b-')
 
     plt.text(-17.5, -17.5,"(step %.0f/200)" %(count))
 

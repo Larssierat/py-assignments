@@ -1,49 +1,47 @@
-import math
 import random
 
-import numpy as np
-import matplotlib.pyplot as plt
 
-dotsY= []
-dotsX= []
-dotsY2=[]
-dotsX2=[]
-dimensionsX = [-2, 2]
-dimensionsY = [-2, 2]
-Distance= 2
-markersize= 5
-angle_list =[]
-for i in range(0, 360):
-    angle_list.append(i)
+#def throw_two_dice():
 
-for j in range(200):
-    newY = Distance * math.sin(random.choice(angle_list))
-    newX = Distance * math.cos(random.choice(angle_list))
-    newY2= Distance * math.sin(random.choice(angle_list))
-    newX2= Distance * math.cos(random.choice(angle_list))
-    dotsY.append(newY)
-    dotsX.append(newX)
-    dotsY2.append(newY2)
-    dotsX2.append(newX2)
+#def simulate_monopoly_games(total_games):
 
-    #plt.plot(dotsX, dotsY, 'b-')
-    #plt.plot(newX, newY, 'bo', markersize) # blue dot
+board_values = [0, 60, 0, 60, 0, 200, 100, 0, 100, 120, 0, 140, 150, 140, 160, 200, 180,
+                0, 180, 200, 0, 220, 0, 220, 240, 200, 260, 260, 150, 280, 0, 300, 300,
+                0, 320, 200, 0, 350, 0, 400]
 
-    plt.plot(dotsX2, dotsY2, 'r-')
-    plt.plot(newX2, newY2, 'ro', markersize)
+possessions =  [0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0]
+
+def throw_two_dice():
+    dice = random.randint(1, 6)
+    dice2= random.randint(1,6)
+    total_throw= dice+dice2
+    return total_throw
 
 
-    plt.xlim(dimensionsX[0], dimensionsX[1])
-    plt.ylim(dimensionsY[0], dimensionsY[1])
 
-    # update graph
-    plt.draw()
-    plt.pause(1)
 
-    #clear graph
-    plt.clf()
+def simulate_monopoly():
+    position = 0
+    for throw in range(1,11):
+        new_throw = throw_two_dice()
+        if position+ new_throw<=39:
+            position= position +new_throw
+        else:
+            position = ((position+new_throw)%39)-1
 
-# 1 punt in het centrum
-# random een kant op met 1
-previous_y
-previous_x
+        if board_values[position]==0:
+            value = 'empty'
+        else:
+            value = 'street'
+
+        if value== 'street' and possessions[position]== 0:
+            possessions[position]=1
+        print (f"After throw {throw}: position {position} ({value})")
+    print (possessions)
+
+
+
+simulate_monopoly()
