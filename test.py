@@ -14,34 +14,40 @@ possessions =  [0,0,0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,0,0]
 
-def throw_two_dice():
+def throw_two_dice():           #function for throwing the dices
     dice = random.randint(1, 6)
     dice2= random.randint(1,6)
     total_throw= dice+dice2
     return total_throw
 
-
-
-
 def simulate_monopoly():
     position = 0
-    for throw in range(1,11):
+    count_properties= 0
+    count_throw= 0
+    fields_for_sale= 28
+    while fields_for_sale>0:    #throw
         new_throw = throw_two_dice()
-        if position+ new_throw<=39:
+        count_throw= count_throw+1
+        if position+ new_throw<=39:      #determing position
             position= position +new_throw
         else:
             position = ((position+new_throw)%39)-1
 
-        if board_values[position]==0:
+        if board_values[position]==0:     #determing board value
             value = 'empty'
         else:
             value = 'street'
+        #print (f"After throw {count_throw}: position {position} ({value})")
 
         if value== 'street' and possessions[position]== 0:
             possessions[position]=1
-        print (f"After throw {throw}: position {position} ({value})")
-    print (possessions)
+            count_properties= count_properties+1
+            fields_for_sale= fields_for_sale - 1
+            #print (f"player 1 has {count_properties} property in their possession there are still {fields_for_sale} fields for sale")
+    return (count_throw)
 
 
 
-simulate_monopoly()
+def simulate_monopoly_games(total_games):
+    for game in range(0, total_games):
+        number_of_throws= simulate_monopoly()
