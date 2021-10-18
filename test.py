@@ -1,18 +1,10 @@
 import random
+import numpy as np
+import matplotlib.pyplot as plt
 
 
-#def throw_two_dice():
 
-#def simulate_monopoly_games(total_games):
 
-board_values = [0, 60, 0, 60, 0, 200, 100, 0, 100, 120, 0, 140, 150, 140, 160, 200, 180,
-                0, 180, 200, 0, 220, 0, 220, 240, 200, 260, 260, 150, 280, 0, 300, 300,
-                0, 320, 200, 0, 350, 0, 400]
-
-possessions =  [0,0,0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,0,0]
 
 def throw_two_dice():           #function for throwing the dices
     dice = random.randint(1, 6)
@@ -21,6 +13,14 @@ def throw_two_dice():           #function for throwing the dices
     return total_throw
 
 def simulate_monopoly():
+    board_values = [0, 60, 0, 60, 0, 200, 100, 0, 100, 120, 0, 140, 150, 140, 160, 200, 180,
+                    0, 180, 200, 0, 220, 0, 220, 240, 200, 260, 260, 150, 280, 0, 300, 300,
+                    0, 320, 200, 0, 350, 0, 400]
+
+    possessions = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                   0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     position = 0
     count_properties= 0
     count_throw= 0
@@ -37,17 +37,31 @@ def simulate_monopoly():
             value = 'empty'
         else:
             value = 'street'
-        #print (f"After throw {count_throw}: position {position} ({value})")
+
 
         if value== 'street' and possessions[position]== 0:
             possessions[position]=1
             count_properties= count_properties+1
             fields_for_sale= fields_for_sale - 1
-            #print (f"player 1 has {count_properties} property in their possession there are still {fields_for_sale} fields for sale")
     return (count_throw)
 
-
-
 def simulate_monopoly_games(total_games):
-    for game in range(0, total_games):
+    list_games=[]
+    sum_of_throws= 0
+    for game in range(0,total_games):
         number_of_throws= simulate_monopoly()
+        list_games.append(number_of_throws)
+        sum_of_throws=sum_of_throws+number_of_throws
+    average_number_of_throws= sum_of_throws/total_games
+    return f"Monopoly simulator: 1 player, Trump mode We simulated {total_games} games It took an average of {average_number_of_throws} throws for the player to collect all streets"
+total_games= 2
+print (simulate_monopoly_games(total_games))
+
+plt.hist(x=simulate_monopoly_games(total_games),bins=10, )
+plt.grid(axis='y', alpha=0.75)
+plt.xlabel('Number of Throws')
+plt.ylabel('Frequency')
+plt.title('Histogram: distribution number of throws')
+plt.show()
+
+

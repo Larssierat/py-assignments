@@ -20,14 +20,14 @@ def throw_two_dice():           #function for throwing the dices
     total_throw= dice+dice2
     return total_throw
 
-
-
-
 def simulate_monopoly():
     position = 0
     count_properties= 0
-    for throw in range(1,11):    #throw
+    count_throw= 0
+    fields_for_sale= 28
+    while fields_for_sale>0:    #throw
         new_throw = throw_two_dice()
+        count_throw= count_throw+1
         if position+ new_throw<=39:      #determing position
             position= position +new_throw
         else:
@@ -37,15 +37,16 @@ def simulate_monopoly():
             value = 'empty'
         else:
             value = 'street'
-        print (f"After throw {throw}: position {position} ({value})")
+        #print (f"After throw {count_throw}: position {position} ({value})")
 
         if value== 'street' and possessions[position]== 0:
             possessions[position]=1
             count_properties= count_properties+1
-            fields_for_sale= 28 - count_properties
-            print (f"player 1 has {count_properties} property in their possession there are still {fields_for_sale} fields for sale")
-    print (possessions)
+            fields_for_sale= fields_for_sale - 1
+            #print (f"player 1 has {count_properties} property in their possession there are still {fields_for_sale} fields for sale")
+    return (count_throw)
+
+number_of_throws = simulate_monopoly()
+print(f"Done! After throw {number_of_throws} the player owned all properties.")
 
 
-
-simulate_monopoly()
