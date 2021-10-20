@@ -18,13 +18,13 @@ def number_of_sentences_in(text):
     return sentences
 
 def average_word_length(text):
-    sum_length_words = 0
     word_list = text.split(' ')
+    sum_length_words= 0
     for i in range(0, len(word_list)):
-        length_word= number_of_letters_in(word_list[i])
-        sum_length_words= sum_length_words+length_word
+        word_list[i]= (word_list[i]).strip('., ')
+        sum_length_words= sum_length_words+len(word_list[i])
     average_letters_word= sum_length_words/number_of_words_in(text)
-    return round(average_letters_word, 2)
+    return round(average_letters_word,2)
 
 
 text = "ASDF is the sequence of letters that appear on the first four keys on the home row of a QWERTY or QWERTZ keyboard. They are often used as a sample or test case or as random, meaningless nonsense. It is also a common learning tool for keyboard classes, since all four keys are located on Home row."

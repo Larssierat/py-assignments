@@ -5,7 +5,6 @@ def text_to_unique_words(text):
     for word in words:                                                   #for i in range(0, len(unique_words)):
         if word not in unique_words:
             unique_words.append(word)
-            print (end='')
     sorted_list= sorted(unique_words)
     return (sorted_list)
 
@@ -13,7 +12,7 @@ def cleanup(words):
     empty_list = []
     for i in range(0, len(words)):
         lowercase_word= words[i].lower()
-        lowercase_stripped_word= lowercase_word.strip('.')
+        lowercase_stripped_word= lowercase_word.strip('.,:;?!')
         empty_list.append(lowercase_stripped_word)
     return empty_list
 

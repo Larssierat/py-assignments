@@ -8,7 +8,7 @@ def throw_two_dice():           #function for throwing the dices
     total_throw= dice+dice2
     return total_throw
 
-def simulate_monopoly(starting_money):
+def simulate_monopoly():
     board_values = [0, 60, 0, 60, 0, 200, 100, 0, 100, 120, 0, 140, 150, 140, 160, 200, 180,
                     0, 180, 200, 0, 220, 0, 220, 240, 200, 260, 260, 150, 280, 0, 300, 300,
                     0, 320, 200, 0, 350, 0, 400]
@@ -21,7 +21,6 @@ def simulate_monopoly(starting_money):
     count_properties= 0
     count_throw= 0
     fields_for_sale= 28
-    start = 200
     while fields_for_sale>0:    #throw
         new_throw = throw_two_dice()
         count_throw= count_throw+1
@@ -29,44 +28,34 @@ def simulate_monopoly(starting_money):
             position= position +new_throw
         else:
             position = ((position+new_throw)%39)-1
-            starting_money= starting_money+start
 
-        if board_values[position]==0:     #determining board value
+        if board_values[position]==0:     #determing board value
             value = 'empty'
         else:
             value = 'street'
 
 
-        if value== 'street' and possessions[position]== 0 and board_values[position]<=starting_money:
+        if value== 'street' and possessions[position]== 0:
             possessions[position]=1
             count_properties= count_properties+1
             fields_for_sale= fields_for_sale - 1
-            starting_money= starting_money-board_values[position]
     return (count_throw)
 
-
-def simulate_monopoly_games(total_games,starting_money):
+def simulate_monopoly_games(total_games):
     list_games=[]
     sum_of_throws= 0
     for game in range(0,total_games):
-        number_of_throws= simulate_monopoly(starting_money)
+        number_of_throws= simulate_monopoly()
         list_games.append(number_of_throws)
         sum_of_throws=sum_of_throws+number_of_throws
     average_number_of_throws= sum_of_throws/total_games
+    plt.hist(x=list_games, bins=10, )
+    plt.xlabel('Number of Throws')
+    plt.ylabel('Frequency')
+    plt.title('Histogram: distribution number of throws')
+    plt.show()
+
     return average_number_of_throws
 total_games= 2500
-starting_money= 0
-
-x_values= []
-y_values=[]
-for i in range(0,3500,500):
-    x_values.append(i)
-    y_values.append(simulate_monopoly_games(total_games,i))
-plt.plot(x_values,y_values, 'b-')
-plt.xlabel("starting money")
-plt.ylabel("average number of throws")
-plt.show()
-
-print (f"Monopoly simulator: 1 player, Trump mode We simulated {total_games} games It took an average of {simulate_monopoly_games(total_games, starting_money)} throws for the player to collect all streets")
-
+print (f"Monopoly simulator: 1 player, Trump mode We simulated {total_games} games It took an average of {simulate_monopoly_games(total_games)} throws for the player to collect all streets")
 
