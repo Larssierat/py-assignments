@@ -25,37 +25,45 @@ traveled_distance= round(traveled_distance, 3)
 print (f"The estimated travelled distance is {traveled_distance}")
 
 # graph speed/time
-#plt.figure(figsize=(20, 5))     #resize
+plt.figure(figsize=(20, 5))     #resize
 
-#plt.ylabel("speed km/h")        #labels
-#plt.xlabel("time(date 19-11-2014")
-#plt.plot(x_values_time, y_values_speed, '-')
-#plt.xticks(x_values_time[::10], rotation='vertical', fontsize= '6')
-#plt.margins(0.1)
-#plt.show()
+plt.ylabel("speed km/h")        #labels
+plt.xlabel("time(date 19-11-2014")
+plt.plot(x_values_time, y_values_speed, '-')
+plt.xticks(x_values_time[::10], rotation='vertical', fontsize= '6')
+plt.margins(0.1)
+plt.show()
 
 
-color=[]
+latitude_above_50=[]
+longitude_above_50= []
+latitude_under_50= []
+longitude_under_50= []
 for i in range (0, len(y_values_speed)):
     if y_values_speed[i]>50:
-        color.append('g')
+        latitude_above_50.append(latitude[i])
+        longitude_above_50.append(longitude[i])
     else:
-        color.append('r')
-print (color)
+        latitude_under_50.append(latitude[i])
+        longitude_under_50.append(longitude[i])
 
+plt.figure(figsize=(40, 5))     #resize
 
-plt.figure(figsize=(20, 5))
-plt.ylabel("latitude")        #labels
-plt.xlabel("longitude")
-plt.scatter(longitude,latitude,s=5,color=color)
-plt.xticks(longitude[::10], rotation='vertical', fontsize= '6')
-plt.yticks(latitude[::15], rotation='horizontal', fontsize='3')
+plt.ylabel("longitude")        #labels
+plt.xlabel("latitude")
+plt.plot(latitude, longitude, '-')
+plt.xticks(x_values_time[::10], rotation='vertical', fontsize= '6')
 plt.margins(0.1)
-plt.axis()
 
 
 
+plt.axis([ 4.8, 5, 52.3, 52.4])
 
 
 plt.show()
 
+
+
+
+
+input_file.close()
