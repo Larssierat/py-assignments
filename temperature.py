@@ -120,9 +120,9 @@ def hot_days_graph():
     plt.yticks(rotation='horizontal', fontsize='10')
     plt.margins(0.001)
     plt.legend()
-    return plt.show(), summer_list, tropical_list
+    return plt.show()
 
-print (hot_days_graph())
+hot_days_graph()
 input_file_max.close()
 input_file_min.close()
 
