@@ -54,6 +54,27 @@ lowest_temp_date, lowest_temp = get_lowest_temp(min_dates, min_temps)
 print (f"the highest temperature was {highest_temp/10} degrees and was measured on {highest_temp_date}")
 print (f"the lowest temperature was {lowest_temp/10} degrees and was measured on {lowest_temp_date}")
 
+def get_coldest_freezing():
+    count = 0
+    longest_freezing_list=[]
+    end_date_list= []
+    for i in range (len(max_temps)):
+        if max_temps[i]<0:
+            count = count+1
+        elif max_temps[i]>=0 and max_temps[i-1]<0:
+            longest_freezing_list.append(count)
+            end_date_list.append(max_dates[i-1])
+            count = 0
+    longest_freezing_date = 0
+    end_date_freezing= 0
+    for i in range (len(longest_freezing_list)):
+        if longest_freezing_list[i]> longest_freezing_date:
+            longest_freezing_date= longest_freezing_list[i]
+            end_date_freezing= date(end_date_list[i])
+    return longest_freezing_date, end_date_freezing
+
+longest_freezing_date, end_date_freezing= (get_coldest_freezing())
+print (f"The longest period of freezing had a duration of {longest_freezing_date} days and ended on {end_date_freezing}")
 
 input_file_max.close()
 input_file_min.close()
