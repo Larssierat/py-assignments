@@ -1,6 +1,5 @@
 import datetime
 import matplotlib.pyplot as plt
-import numpy as np
 
 
 
@@ -30,10 +29,6 @@ def date(temp_date):
     x= datetime.datetime(year, month, day)
     return x.strftime("%d %b %Y")
 
-
-
-
-
 def get_highest_temp(input_dates, input_temps):
     highest_temp= 0
     highest_temp_date=0
@@ -58,8 +53,7 @@ highest_temp_date, highest_temp = get_highest_temp(max_dates, max_temps)
 lowest_temp_date, lowest_temp = get_lowest_temp(min_dates, min_temps)
 
 
-#print (f"the highest temperature was {highest_temp/10} degrees and was measured on {highest_temp_date}")
-#print (f"the lowest temperature was {lowest_temp/10} degrees and was measured on {lowest_temp_date}")
+
 
 def get_coldest_freezing():
     count = 0
@@ -81,7 +75,7 @@ def get_coldest_freezing():
     return longest_freezing_date, end_date_freezing
 
 longest_freezing_date, end_date_freezing= (get_coldest_freezing())
-#print (f"The longest period of freezing had a duration of {longest_freezing_date} days and ended on {end_date_freezing}")
+
 
 def hot_days_graph():
     summer_days_count=0
@@ -122,7 +116,30 @@ def hot_days_graph():
     plt.legend()
     return plt.show()
 
+
+
+def get_first_heat_wave(max_dates, max_temps):
+    temp_25= 0
+    temp_30= 0
+    for i in range (len(max_temps)):
+        if max_temps[i]>=300:
+            temp_30= temp_30+1
+            temp_25= temp_25+1
+        elif max_temps[i] >=250:
+            temp_25=temp_25+1
+        elif max_temps[i]<250:
+            temp_25=0
+            temp_30=0
+        if temp_30>=3 and temp_25>=5:
+            return max_dates[i][0:4]
+
+year_heat_wave= get_first_heat_wave(max_dates, max_temps)
+
+print (f"the highest temperature was {highest_temp/10} degrees and was measured on {highest_temp_date}")
+print (f"the lowest temperature was {lowest_temp/10} degrees and was measured on {lowest_temp_date}")
+print (f"The longest period of freezing had a duration of {longest_freezing_date} days and ended on {end_date_freezing}")
 hot_days_graph()
+print (f"The year in which the first heat wave occurred was {year_heat_wave}")
 input_file_max.close()
 input_file_min.close()
 
