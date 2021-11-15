@@ -150,17 +150,4 @@ input_file_min.close()
 
 
 
-#def get_first_heat_wave(max_dates, max_temps):
-#    temp_25=0
-#    temp_30=0
-#    for index,temp in enumerate(max_temps):
-#        if temp_25 ==5 and temp_30==3:
-#            return max_dates[index-1]
-#        elif temp >=30:
-#            temp_25 = temp_25+1
-#            temp_30= temp_30+1
-#        elif temp >=25:
-#            temp_25= temp_25+1
-#        elif temp <25:
-#            temp_25=0
-#            temp_30=0
+

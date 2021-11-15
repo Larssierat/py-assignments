@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 input_file = open('CarRideData.csv', 'r')
@@ -22,17 +23,16 @@ for i in range(0,len(y_values_speed)):
     y_values_speed[i]= (float((y_values_speed[i]))*3.6)   #speed to km/h
     traveled_distance= traveled_distance+ (y_values_speed[i]/3600)
 traveled_distance= round(traveled_distance, 3)
-print (f"The estimated travelled distance is {traveled_distance}")
+print (f"The estimated travelled distance is {traveled_distance} km")
 
 # graph speed/time
-#plt.figure(figsize=(20, 5))     #resize
-
-#plt.ylabel("speed km/h")        #labels
-#plt.xlabel("time(date 19-11-2014")
-#plt.plot(x_values_time, y_values_speed, '-')
-#plt.xticks(x_values_time[::10], rotation='vertical', fontsize= '6')
-#plt.margins(0.1)
-#plt.show()
+plt.figure(figsize=(20, 5))     #resize
+plt.ylabel("speed km/h")        #labels
+plt.xlabel("time(date 19-11-2014")
+plt.plot(x_values_time, y_values_speed, '-')
+plt.xticks(x_values_time[::10], rotation='vertical', fontsize= '6')
+plt.margins(0.01)
+plt.show()
 
 
 color=[]
@@ -41,17 +41,19 @@ for i in range (0, len(y_values_speed)):
         color.append('g')
     else:
         color.append('r')
-print (color)
+
+
 
 
 plt.figure(figsize=(20, 5))
 plt.ylabel("latitude")        #labels
 plt.xlabel("longitude")
 plt.scatter(longitude,latitude,s=5,color=color)
+
 plt.xticks(longitude[::10], rotation='vertical', fontsize= '6')
-plt.yticks(latitude[::15], rotation='horizontal', fontsize='3')
-plt.margins(0.1)
-plt.axis()
+plt.yticks(latitude[::15], rotation='horizontal', fontsize='6')
+plt.margins(0.01)
+
 
 
 
