@@ -8,8 +8,8 @@ dotsY= []
 dotsX= []
 dotsY2=[]
 dotsX2=[]
-dimensionsX = [-20, 20]
-dimensionsY = [-20, 20]
+dimensionsX = [-20, 20]   # range Xaxis
+dimensionsY = [-20, 20]   # range Yaxis
 previousY= 0
 previousX=0
 previousY2=0
@@ -47,7 +47,7 @@ for j in range(200):
     plt.plot(dotsX2, dotsY2, 'g-') # second line
     plt.plot(newX2, newY2, 'go', markersize)
 
-    plt.plot(x_values, y_values, 'b-')
+    plt.plot(x_values, y_values, 'r-')
 
     plt.text(-17.5, -17.5,"(step %.0f/200)" %(count))
 
