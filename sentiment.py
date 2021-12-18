@@ -1,9 +1,6 @@
 # Name: Lars Sierat
 # Date: 25-11-2021
-# Description: this program calculates what the sentiment score of a text is by dividing the words in the text in positive, negative and neutral words.
-
-
-
+# Description: this program calculates the sentiment score of a text by dividing the words in the text in positive, negative and neutral words.
 
 # this is a function that reads a text and returns the different lines in a text
 def load_words(words):
@@ -12,10 +9,12 @@ def load_words(words):
     content.close()
     return lines
 
-def load_positive_words():       # returns positive words
+# returns positive words
+def load_positive_words():
     return load_words('pos_words.txt')
 
-def load_negative_words():       # returns negative words
+# returns negative words
+def load_negative_words():
    return load_words("neg_words.txt")
 
 pos_words = load_positive_words()
